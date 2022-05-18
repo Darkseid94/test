@@ -41,19 +41,98 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-6">
+                    <div class="card clock">
+                            <center>
+                            <lavel> id,name,age,score\n </lavel>
+                            <?php
+                                    require("bd.php");
+                                    $consulta = "SELECT * from personas";
+                                    $resultado=$conexion->query($consulta);
+                                    while($fila = $resultado->fetch_array()){
+                                        echo "<td>".$fila['id'].",</td>";
+                                        echo "<td>".$fila['name'].",</td>";
+                                        if ($fila['age']==""){
+                                           echo  $fila['age']="NULL,";
+                                        }else{
+                                            echo "<td>".$fila['age'].",</td>";
+                                        }
+                                        
+                                        echo "<td>".$fila['score']."\n</td>"; 
+                                    }
+                                    ?>
+                            </center>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="card clock">
                             <center>
-                                <span class="badge badge-pill badge-success" id="hours"></span> :
-                                <span class="badge badge-pill badge-success" id="minutes"></span> :
-                                <span class="badge badge-pill badge-success" id="seconds"></span>
+                            <lavel> id,name,age,score\n </lavel>
+                            <?php
+                                    
+                                    $consulta2 = "SELECT * from personas where age != 'null'";
+                                    $resultado2=$conexion->query($consulta2);
+                                    while($fila2 = $resultado2->fetch_array()){
+                                        echo "<td>".$fila2['id'].",</td>";
+                                        echo "<td>".$fila2['name'].",</td>";
+                                        echo "<td>".$fila2['age'].",</td>";
+                                        echo "<td>".$fila2['score']."\n</td>"; 
+                                    }
+                                    ?>
                             </center>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
+                        <div class="card clock">
+                            <center>
+                            <lavel> header,header\n </lavel>
+                            <?php
+                                    
+                                    /*$consulta3 = "SELECT c.header,c2.header from header c2
+                                                 INNER JOIN consulta2 c on c2.fk_header=c.id";*/
+                                    $consulta3 = "SELECT c.header,c2.header from header c2
+                                                 INNER JOIN consulta2 c on c2.fk_header=c.id";
+                                    $resultado3=$conexion->query($consulta3);
+                                    while($fila3 = $resultado3->fetch_array()){
+
+                                        
+                                        if ($fila3[0]=="" && $fila3[1]=="" ){
+                                           $fila3[0]="NULL";
+                                           $fila3[1]="NULL";
+                                         }
+                                         echo $fila3[0].",";
+                                         echo $fila3[1]."\n";
+                                       
+                                    }
+                                    ?>
+                            </center>
+                        </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <div class="card clock">
+                            <center>
+                            <lavel> header,header\n </lavel>
+                            <?php
+                                    
+                                    /*$consulta3 = "SELECT c.header,c2.header from header c2
+                                                 INNER JOIN consulta2 c on c2.fk_header=c.id";*/
+                                    $consulta4 = "SELECT c.header,c2.header from header c2
+                                                 INNER JOIN consulta2 c on c2.fk_header=c.id 
+                                                 where c2.header !='NULL' ";
+                                    $resultado4=$conexion->query($consulta4);
+                                    while($fila4 = $resultado4->fetch_array()){
+
+                                         echo $fila4[0].",";
+                                         echo $fila4[1]."\n";
+                                       
+                                    }
+                                    $conexion->close();
+                                    ?>
+                            </center>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>

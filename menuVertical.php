@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="enysa.php">
+                    <a href="test4.php">
                         <i class="pe-7s-back-2"></i>
                         <p>DeleteDefectiveRows</p>
                     </a>
