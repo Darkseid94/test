@@ -42,26 +42,68 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="header">
-                                <h4 class="title">zapatos</h4>
-                                
-                            </div>
-                            <div class="content">
-                            <div class="row">
-                            <form  method='GET'>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" pattern="[Ll]" name="zapatos" value="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-secondary btn-fill pull-left">Enviar</button>
-                                    </div>
-                                </div>
-                            </form>
-                            </div>
-                            </div>    
+                        <?php 
+                            class Shoes
+                            {
+                                public $s;
+
+                                public function getIntervalo()
+                            {
+                                $string = $this->s;
+                                $arr1 = str_split($string);
+                                $intervalo = 0;
+                                $int2 = 0;
+                                $count = 0;
+                                $valor =  $arr1[0];
+                                $valor2 = "";
+
+                                for($i= 0; $i < sizeof($arr1); $i++){
+                                    if($i > 0){
+                 // L  L           L R
+                                        if($valor == $arr1[$i]){
+                                            $valor2 = $valor;
+                                             $intervalo++;
+                                            if($valor2 == $valor){
+                                                $count++;
+                                            }
+                                            if( $intervalo == $int2){
+                                                $count++;
+                                            }
+                                        }else{
+                                            $int2++;
+                                        }
+                                }
+
+          //L L
+        
+        //L R
+                                $valor = $arr1[$i];
+                            }
+
+                            return $count;
+                            }
+                        }
+  
+ $shoes = new Shoes();
+ $shoes->s = ' LLRLRLRLRLRLRR'; //1
+ $total = $shoes->getIntervalo(); 
+ echo "Prueba 1 <br>";
+ print_r($total);
+
+ $shoes->s = 'RLLLRRRLLR'; // 4
+ $total = $shoes->getIntervalo(); 
+ echo "<br>";
+ echo "prueba 2 <br>";
+ print_r($total);
+
+ $shoes->s = 'RLRRLLRLRRLL'; // 4
+ $total = $shoes->getIntervalo(); 
+ echo "<br>";
+ echo "prueba 3 <br>";
+ print_r($total);
+
+  
+?>
                             
                             
                         </div>
